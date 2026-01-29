@@ -1,29 +1,41 @@
-# ⏱️ Focus Timer
+# Focus Timer ⏱️
 
-A simple focus timer built to help you work with intention, not pressure.
+A calm, human-centered focus timer designed to encourage steady attention without pressure.
 
-This project is part of my personal learning journey as a junior web developer.
-It’s intentionally minimal — no clutter, no overengineering — just a calm space to focus.
+This project is not about productivity hacks or aggressive optimization.
+It’s about staying present, focused, and supported during a single work session.
 
-## ✨ Why this project?
-Because productivity tools don’t need to be loud.
-Sometimes all you need is:
-- a clear timer
-- a simple interface
-- and fewer distractions
+## ✨ What it does
+- Runs a real focus countdown timer
+- Shows a gentle motivational message every 10 minutes:
+  > *“Good job. Stay focused on your goal.”*
+- Keeps the interface clean and distraction-free
+- Encourages focus without forcing productivity
+
+## 🎯 Why this project?
+I wanted to build a small tool that feels supportive, not demanding.
+Something that quietly reminds you you’re doing well, without breaking your flow.
 
 ## 🛠️ Built with
 - HTML
 - CSS
-- JavaScript (vanilla)
+- Vanilla JavaScript
 
-## 🎯 Goals
-- Practice clean and readable code
-- Focus on user experience, not features overload
-- Build something human-centered
+No frameworks, no libraries — just the essentials.
+
+## 🧠 Design approach
+- Minimal UI
+- Calm color palette
+- One clear purpose per screen
+- Intentional feature limits
 
 ## 🚧 Status
-This project is still evolving.
-Small improvements will be added step by step.
+This project is complete in its core idea.
+Future changes, if any, will remain small and intentional.
 
-Made with focus ☕
+## 🔗 Live Demo
+👉 https://saleh-web-dev.github.io/Focus-Timer/
+
+---
+
+Built with focus and care by Saleh Barakat
