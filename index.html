@@ -1,39 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Focus Timer</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <style>
-    body {
+    * {
+      box-sizing: border-box;
       margin: 0;
-      height: 100vh;
+      padding: 0;
+      font-family: system-ui, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
       display: flex;
-      justify-content: center;
       align-items: center;
-      background: #0f172a;
-      font-family: Arial, sans-serif;
-      color: #e5e7eb;
+      justify-content: center;
+      background: linear-gradient(135deg, #2e1065, #4c1d95, #1e1b4b);
+      color: #f4f4f5;
     }
+
     .card {
-      background: #020617;
-      padding: 30px 40px;
-      border-radius: 12px;
+      background: linear-gradient(180deg, #3b0764, #2e1065);
+      padding: 32px;
+      width: 340px;
+      border-radius: 18px;
       text-align: center;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.4);
     }
+
     h1 {
       margin-bottom: 10px;
+      font-size: 26px;
     }
-    p {
-      opacity: 0.8;
+
+    #time {
+      font-size: 48px;
+      font-weight: 700;
+      margin: 20px 0;
+      letter-spacing: 2px;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #a855f7, #7c3aed);
+      border: none;
+      border-radius: 12px;
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    #message {
+      margin-top: 18px;
+      font-size: 14px;
+      color: #fde68a;
+      min-height: 20px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .hint {
+      margin-top: 14px;
+      font-size: 12px;
+      opacity: 0.5;
     }
   </style>
 </head>
+
 <body>
   <div class="card">
     <h1>Focus Timer</h1>
-    <p>One session. No pressure.</p>
+    <div id="time">25:00</div>
+    <button id="btn">Start</button>
+    <div id="message">Good job. Stay focused on your goal.</div>
+    <p class="hint">One session. No pressure.</p>
   </div>
+
+  <script>
+    const SESSION_MINUTES = 25;
+    let totalSeconds = SESSION_MINUTES * 60;
+    let interval = null;
+    let running = false;
+    let lastMotivationMinute = SESSION_MINUTES;
+
+    const timeEl = document.getElementById("time");
+    const btn = document.getElementById("btn");
+    const messageEl = document.getElementById("message");
+
+    function updateTime() {
+      const minutes = Math.floor(totalSeconds / 60);
+      const seconds = totalSeconds % 60;
+      timeEl.textContent =
+        String(minutes).padStart(2, "0") +
+        ":" +
+        String(seconds).padStart(2, "0");
+
+      // every 10 minutes
+      if (
+        minutes % 10 === 0 &&
+        minutes !== lastMotivationMinute &&
+        minutes !== 0
+      ) {
+        showMessage();
+        lastMotivationMinute = minutes;
+      }
+    }
+
+    function showMessage() {
+      messageEl.style.opacity = 1;
+      setTimeout(() => {
+        messageEl.style.opacity = 0;
+      }, 4000);
+    }
+
+    btn.addEventListener("click", () => {
+      if (!running) {
+        running = true;
+        btn.textContent = "Pause";
+
+        interval = setInterval(() => {
+          if (totalSeconds > 0) {
+            totalSeconds--;
+            updateTime();
+          } else {
+            clearInterval(interval);
+            btn.textContent = "Done";
+            showMessage();
+          }
+        }, 1000);
+      } else {
+        running = false;
+        btn.textContent = "Start";
+        clearInterval(interval);
+      }
+    });
+
+    updateTime();
+  </script>
 </body>
 </html>
